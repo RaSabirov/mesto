@@ -1,0 +1,7 @@
+.places__container {
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
