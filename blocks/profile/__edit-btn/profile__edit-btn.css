@@ -4,10 +4,12 @@
     height: 24px;
     border: 1px solid #FFFFFF;
     background-color: inherit;
-    background-image: url('../../../images/edit-btn.svg');
-    background-size: cover;
+    background-image: url('../../../images/editbtn.svg');
+    background-size: 10px 10px;
     background-repeat: no-repeat;
     background-position: center;
     align-self: end;
     margin-bottom: 6px;
+    box-sizing: border-box;
+    padding: 0;
 }
