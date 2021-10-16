@@ -8,16 +8,18 @@ const popupCloseButtonElement = popupElement.querySelector(".popup__close-btn");
 const popupOpenButtonElement = document.querySelector(".profile__edit-btn");
 
 const closePopupByClickOverlay = function(event) {
-  
-}
+  if (event.target !== event.currentTarget) {
+    return;
+  }
+  closePopup();
+};
 
 // Функция отображения popup при клике
 const openPopup = function () {
   popupElement.classList.add('popup_is-opened');
 };
 
-const closePopup = function (event) {
-  event.preventDefault();
+const closePopup = function () {
   popupElement.classList.remove('popup_is-opened');
 };
 
