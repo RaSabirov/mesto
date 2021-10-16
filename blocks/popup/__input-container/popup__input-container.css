@@ -1,0 +1,9 @@
+.popup__input-container {
+    max-width: 358px;
+    margin-bottom: 48px;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    margin-left 0;
+    margin-right 0;
+}

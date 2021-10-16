@@ -2,80 +2,96 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Проект Место</title>
 </head>
 
 <body class="body">
     <div class="page page__container">
         <header class="header page__container">
-            <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+            <img class="header__logo" src="./images/logo.svg" alt="Логотип Место" />
             <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile page__container">
                 <div class="profile__container">
-                <img class="profile__image" src="./images/avatar.png" alt="Аватарка профиля">
-                <div class="profile__info">
+                    <img class="profile__image" src="./images/avatar.png" alt="Аватарка профиля" />
+                    <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-btn profile__edit-btn_action_change link"></button>
+                        <button class="profile__edit-btn"></button>
                         <p class="profile__job">Исследователь океана</p>
+                    </div>
                 </div>
-            </div>
-                <button class="profile__add-btn profile__add-btn_action_adding link"></button>
+                <button class="profile__add-btn link"></button>
             </section>
             <section class="places page__container">
                 <div class="places__item">
-                    <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента">
+                    <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента" />
                     <div class="places__container">
-                        <p class="places__text">Карачаевск</p>
+                        <p class="places__text">Летний лес</p>
                         <button class="places__like-btn link"></button>
                     </div>
                 </div>
                 <div class="places__item">
-                    <img class="places__photo" src="./images/02.jpg" alt="Карточка элемента">
+                    <img class="places__photo" src="./images/02.jpg" alt="Карточка элемента" />
+                    <div class="places__container">
+                        <p class="places__text">Осенние листья</p>
+                        <button class="places__like-btn link"></button>
+                    </div>
+                </div>
+                <div class="places__item">
+                    <img class="places__photo" src="./images/03.jpg" alt="Карточка элемента" />
                     <div class="places__container">
                         <p class="places__text">Гора Эльбрус</p>
                         <button class="places__like-btn link"></button>
                     </div>
                 </div>
                 <div class="places__item">
-                    <img class="places__photo" src="./images/03.jpg" alt="Карточка элемента">
+                    <img class="places__photo" src="./images/04.jpg" alt="Карточка элемента" />
                     <div class="places__container">
-                        <p class="places__text">Домбай</p>
+                        <p class="places__text">Мост Карачавск</p>
                         <button class="places__like-btn link"></button>
                     </div>
                 </div>
                 <div class="places__item">
-                    <img class="places__photo" src="./images/04.jpg" alt="Карточка элемента">
+                    <img class="places__photo" src="./images/05.jpg" alt="Карточка элемента" />
                     <div class="places__container">
-                        <p class="places__text">Гора Эльбрус</p>
+                        <p class="places__text">Отдых с Дюной</p>
                         <button class="places__like-btn link"></button>
                     </div>
                 </div>
                 <div class="places__item">
-                    <img class="places__photo" src="./images/05.jpg" alt="Карточка элемента">
+                    <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента" />
                     <div class="places__container">
-                        <p class="places__text">Домбай</p>
+                        <p class="places__text">Лес с видом сверху</p>
                         <button class="places__like-btn link"></button>
                     </div>
                 </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Карачаево-Черкессия</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
+            </section>
+            <section class="popup">
+                <form class="popup__container">
+                    <button class="popup__close-btn link"></button>
+                    <fieldset class="popup__input-container">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <input type="text" placeholder="Введите имя"
+                            class="popup__input-text popup__input-text_type_name" value="Жак-Ив Кусто" />
+                        <input type="text" placeholder="Введите описание"
+                            class="popup__input-text popup__input__text_type_job" value="Исследователь океана" />
+                    </fieldset>
+                    <button class="popup__submit-btn popup__submit-btn_action_save link">
+                        Сохранить
+                    </button>
+                </form>
             </section>
         </main>
         <footer class="footer page__container">
             <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
         </footer>
     </div>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
