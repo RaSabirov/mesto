@@ -17,10 +17,16 @@
   transform: scale(1.3);
 }
 
+@media screen and (max-width: 560px) {
+  .popup__close-btn {
+    right: 0;
+    top: -50px;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .popup__close-btn {
     width: 20px;
     height: 20px;
-    right: 0;
   }
 }

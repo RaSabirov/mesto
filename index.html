@@ -11,7 +11,6 @@
 <body class="page">
         <header class="header page__container">
             <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
-            <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile page__container">
@@ -19,11 +18,11 @@
                     <img class="profile__image" src="./images/avatar.png" alt="Аватарка профиля">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-btn link"></button>
+                        <button class="profile__edit-btn link" type="button"></button>
                         <p class="profile__job">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-btn link"></button>
+                <button class="profile__add-btn link" type="button"></button>
             </section>
             <section class="places page__container">
                 <ul class="places__card">
@@ -31,42 +30,42 @@
                         <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Летний лес</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/02.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Осенние листья</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/03.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Гора Эльбрус</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/04.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Мост Карачаевск</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/05.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Отдых с Дюной</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <p class="places__text">Лес с видом сверху</p>
-                            <button class="places__like-btn link"></button>
+                            <button class="places__like-btn places__like-btn_action_active link" type="button"></button>
                         </div>
                     </li>
                     </ul>
@@ -74,17 +73,13 @@
             <section class="popup">
                 <div class="popup__container">
                 <form class="popup__form">
-                    <button class="popup__close-btn link"></button>
+                    <button class="popup__close-btn link" type="button"></button>
                     <fieldset class="popup__input-container">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <input type="text" placeholder="Введите имя"
-                            class="popup__input-text popup__input-text_type_name" value="Жак-Ив Кусто">
-                        <input type="text" placeholder="Введите описание"
-                            class="popup__input-text popup__input__text_type_job" value="Исследователь океана">
+                        <input type="text" placeholder="Введите имя" class="popup__input popup__input_type_name" value>
+                        <input type="text" placeholder="Введите описание" class="popup__input popup__input_type_job" value>
                     </fieldset>
-                    <button class="popup__submit-btn popup__submit-btn_action_save link">
-                        Сохранить
-                    </button>
+                    <button class="popup__submit-btn link" type="submit">Сохранить</button>
                 </form>
             </div>
             </section>

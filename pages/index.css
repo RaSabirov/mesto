@@ -12,7 +12,6 @@
 /* Блок header */
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
-@import url('../blocks/header/__line/header__line.css');
 
 /* Блок Profile */
 @import url('../blocks/profile/profile.css');
@@ -40,9 +39,9 @@
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_is-opened/popup_is-opened.css');
 @import url('../blocks/popup/__container/popup__container.css');
-@import url('../blocks/popup/__input-text/popup__input-text.css');
-@import url('../blocks/popup/__input-text/_type_name/popup__input-text_type_name.css');
-@import url('../blocks/popup/__input-text/_type_job/popup__input__text_type_job.css');
+@import url('../blocks/popup/__input/popup__input.css');
+@import url('../blocks/popup/__input/_type_name/popup__input_type_name.css');
+@import url('../blocks/popup/__input/_type_job/popup__input_type_job.css');
 @import url('../blocks/popup/__submit-btn/popup__submit-btn.css');
 @import url('../blocks/popup/__close-btn/popup__close-btn.css');
 @import url('../blocks/popup/__title/popup__title.css');
