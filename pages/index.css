@@ -20,7 +20,6 @@
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__image/profile__image.css');
 @import url('../blocks/profile/__info/profile__info.css');
-@import url('../blocks/profile/__text/profile__text.css');
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/profile/__job/profile__job.css');
 @import url('../blocks/profile/__edit-btn/profile__edit-btn.css');
@@ -28,10 +27,10 @@
 @import url('../blocks/profile/__container/profile__container.css');
 
 /* Блок Places */
-@import url('../blocks/places/places.css');
-@import url('../blocks/places/__item/places__item.css');
+@import url('../blocks/places/__card/places__card.css');
+@import url('../blocks/places/__card-item/places__card-item.css');
 @import url('../blocks/places/__photo/places__photo.css');
-@import url('../blocks/places/__container/places__container.css');
+@import url('../blocks/places/__text-container/places__text-container.css');
 @import url('../blocks/places/__text/places__text.css');
 @import url('../blocks/places/__like-btn/places__like-btn.css');
 
@@ -48,6 +47,5 @@
 @import url('../blocks/popup/__input-text/_type_job/popup__input__text_type_job.css');
 @import url('../blocks/popup/__submit-btn/popup__submit-btn.css');
 @import url('../blocks/popup/__close-btn/popup__close-btn.css');
-/* @import url('../blocks/popup/__submit-btn/_action_save/popup__submit-btn_action_save.css'); */
 @import url('../blocks/popup/__title/popup__title.css');
 @import url('../blocks/popup/__input-container/popup__input-container.css');

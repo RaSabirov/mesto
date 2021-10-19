@@ -1,7 +1,7 @@
-.places__item {
-    max-width: 282px;
-    min-height: 361px;
+.places__card-item {
     border-radius: 10px;
     background-color: #FFFFFF;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }

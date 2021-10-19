@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Проект Место</title>
 </head>
-<body class="body">
-    <div class="page page__container">
+<body class="page">
         <header class="header page__container">
             <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
             <div class="header__line"></div>
@@ -27,48 +26,50 @@
                 <button class="profile__add-btn link"></button>
             </section>
             <section class="places page__container">
-                <div class="places__item">
-                    <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Летний лес</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/02.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Осенние листья</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/03.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Гора Эльбрус</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/04.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Мост Карачавск</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/05.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Отдых с Дюной</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
-                <div class="places__item">
-                    <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента">
-                    <div class="places__container">
-                        <p class="places__text">Лес с видом сверху</p>
-                        <button class="places__like-btn link"></button>
-                    </div>
-                </div>
+                <ul class="places__card">
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Летний лес</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/02.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Осенние листья</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/03.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Гора Эльбрус</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/04.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Мост Карачаевск</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/05.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Отдых с Дюной</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    <li class="places__card-item">
+                        <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента">
+                        <div class="places__text-container">
+                            <p class="places__text">Лес с видом сверху</p>
+                            <button class="places__like-btn link"></button>
+                        </div>
+                    </li>
+                    </ul>
             </section>
             <section class="popup">
                 <form class="popup__container">
@@ -89,7 +90,6 @@
         <footer class="footer page__container">
             <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
         </footer>
-    </div>
     <script src="./script/index.js"></script>
 </body>
 

@@ -1,13 +1,19 @@
 .profile__add-btn {
-    cursor: pointer;
-    width: 150px;
-    height: 50px;
-    border: 2px solid #FFFFFF;
-    background-color: inherit;
-    background-image: url('../../../images/addbtn.svg');
-    background-size: 22px 22px;
-    background-repeat: no-repeat;
-    background-position: center;
-    box-sizing: border-box;
-    padding: 0;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  background-color: inherit;
+  background-image: url("../../../images/addbtn.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  padding: 0;
 }
+
+@media screen and (max-width: 690px) {
+  .profile__add-btn {
+    width: 100%;
+  }
+} ;
