@@ -9,11 +9,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 340px;
 }
 
 @media screen and (max-width: 425px) {
   .profile__job {
     font-size: 14px;
     line-height: 17px;
+    max-width: 220px;
   }
 } ;
