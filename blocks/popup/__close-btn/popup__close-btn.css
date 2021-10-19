@@ -4,7 +4,7 @@
   top: -40px;
   width: 32px;
   height: 32px;
-  background-image: url("../../../images/Close-Icon.svg");
+  background-image: url('../../../images/Close-Icon.svg');
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,4 +15,12 @@
 
 .popup__close-btn:hover {
   transform: scale(1.3);
+}
+
+@media screen and (max-width: 425px) {
+  .popup__close-btn {
+    width: 20px;
+    height: 20px;
+    right: 0;
+  }
 }
