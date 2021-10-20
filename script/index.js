@@ -1,32 +1,32 @@
 // 1. Popup || Поиск элементов popup формы
 
 // popup form
-let popupElement = document.querySelector(".popup");
+let popupElement = document.querySelector('.popup');
 // popup close
-const popupCloseButtonElement = popupElement.querySelector(".popup__close-btn");
+const popupCloseButtonElement = popupElement.querySelector('.popup__close-btn');
 // popupOpenButton -> edit-btn
-const popupOpenButtonElement = document.querySelector(".profile__edit-btn");
+const popupOpenButtonElement = document.querySelector('.profile__edit-btn');
 // Поиск элемента формы
-let formElement = popupElement.querySelector(".popup__form");
+let formElement = popupElement.querySelector('.popup__form');
 // Поля input у формы
-let nameInput = popupElement.querySelector(".popup__input_type_name");
-let jobInput = popupElement.querySelector(".popup__input_type_job");
+let nameInput = popupElement.querySelector('.popup__input_type_name');
+let jobInput = popupElement.querySelector('.popup__input_type_job');
 // Текстовое поля из profile, куда будут записаны значения из value
-let profileName = document.querySelector(".profile__name");
-let profileJob = document.querySelector(".profile__job");
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__job');
 
 // 1.1 Popup || Открытие и закрытие формы
 
 // Функция отображения popup при клике на кнопку редактирования
 const openPopup = function () {
-  popupElement.classList.add("popup_is-opened");
-  nameInput.value = profileName.textContent; //Сохранение значения после повторного открытия формы
-  jobInput.value = profileJob.textContent; //Сохранение значения после повторного открытия формы
+  popupElement.classList.add('popup_is-opened');
+  nameInput.value = profileName.textContent; //Передам значения после повторного открытия формы
+  jobInput.value = profileJob.textContent; //Передам значения после повторного открытия формы
 };
 
 // Функция закрытия popup при клике на кнопку закрытия
 const closePopup = function () {
-  popupElement.classList.remove("popup_is-opened");
+  popupElement.classList.remove('popup_is-opened');
 };
 
 // Функция закрытия popup при клике на область вне формы
@@ -51,7 +51,7 @@ function formSubmitHandler(e) {
 }
 
 // 1.3 Popup || Регистрируем обработчики событий для формы popup
-popupOpenButtonElement.addEventListener("click", openPopup); // Передам событие "Открыть Popup"
-popupCloseButtonElement.addEventListener("click", closePopup); // Передам событие "Закрыть Popup"
-popupElement.addEventListener("click", closePopupByClickOverlay); // Передам событие "Закрыть Popup"
-formElement.addEventListener("submit", formSubmitHandler); // Передам событие "Сохранить значение"
+popupOpenButtonElement.addEventListener('click', openPopup); // Передам событие "Открыть Popup"
+popupCloseButtonElement.addEventListener('click', closePopup); // Передам событие "Закрыть Popup"
+popupElement.addEventListener('click', closePopupByClickOverlay); // Передам событие "Закрыть Popup"
+formElement.addEventListener('submit', formSubmitHandler); // Передам событие "Сохранить значение"

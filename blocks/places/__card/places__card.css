@@ -1,6 +1,6 @@
 .places__card {
   display: grid;
-  grid-gap: 20px 17px;
+  grid-gap: 17px;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   list-style-type: none;
   margin: 0;
