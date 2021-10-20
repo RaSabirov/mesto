@@ -11,11 +11,18 @@
   text-align: center;
   width: 100%;
   padding: 0;
+  margin-top: 48px;
+  transition: ease 0.5s;
+}
+
+.popup__submit-btn:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 425px) {
   .popup__submit-btn {
     font-size: 14px;
     line-height: 17px;
+    margin-top: 45px;
   }
 }

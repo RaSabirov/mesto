@@ -9,4 +9,9 @@
   background-position: center;
   border: none;
   padding: 0;
+  transition: ease 0.5s;
+}
+
+.places__like-btn:hover {
+  opacity: 0.5;
 }

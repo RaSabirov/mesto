@@ -32,13 +32,10 @@ const closePopup = function () {
 // 1.2 Popup || Функция для сохранения значений при редактировании формы
 function formSubmitHandler(e) {
   e.preventDefault();
-  // Задаем переменные для получения значений полей jobInput и nameInput из свойства value
-  let nameInputValue = nameInput.value;
-  let jobInputValue = jobInput.value;
+  // Записываем новые значения value в profile поля с помощью textContent
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
 
-// Вставляем новые значения value в profile поля с помощью textContent
-  profileName.textContent = nameInputValue;
-  profileJob.textContent = jobInputValue;
   closePopup();
 }
 
