@@ -10,17 +10,5 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 225px;
-}
-
-@media screen and (max-width: 618px) {
-  .places__text {
-    max-width: 335px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .places__text {
-    max-width: 220px;
-  }
+  max-width: 90%;
 }

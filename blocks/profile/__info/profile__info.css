@@ -10,7 +10,7 @@
   .profile__info {
     grid-column-gap: 10px;
     grid-row-gap: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 33px;
     justify-items: center;
   }
 }

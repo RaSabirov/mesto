@@ -1,8 +1,7 @@
 .places__text-container {
   display: flex;
-  height: 80px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px 0 15px;
+  padding: 22px 19px 27px 20px;
   box-sizing: border-box;
 }

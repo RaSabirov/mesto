@@ -1,16 +1,12 @@
 .places__like-btn {
-    cursor: pointer;
-    width: 22px;
-    min-height: 19px;
-    background-color: inherit;
-    background-image: url('../../../images/like-btn.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    padding: 0;
-}
-
-.places__like-btn:hover {
-    transform: scale(1.1);
+  cursor: pointer;
+  width: 22px;
+  min-height: 19px;
+  background-color: inherit;
+  background-image: url("../../../images/like-btn.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  padding: 0;
 }

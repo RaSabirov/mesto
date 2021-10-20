@@ -13,10 +13,6 @@
   border: none;
 }
 
-.popup__close-btn:hover {
-  transform: scale(1.3);
-}
-
 @media screen and (max-width: 560px) {
   .popup__close-btn {
     right: 0;
