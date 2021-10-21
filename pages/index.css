@@ -30,6 +30,7 @@
 @import url('../blocks/places/__text-container/places__text-container.css');
 @import url('../blocks/places/__text/places__text.css');
 @import url('../blocks/places/__like-btn/places__like-btn.css');
+@import url('../blocks/places/__like-btn/_active/places__like-btn_active.css');
 
 /* Блок Footer */
 @import url('../blocks/footer/footer.css');
