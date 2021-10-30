@@ -26,7 +26,8 @@
                 <button class="profile__add-btn link" type="button" aria-label="Кнопка добавить"></button>
             </section>
             <section class="places page__container">
-                <ul class="places__card">
+                <ul class="places__card"></ul>
+                <!-- <ul class="places__card">
                     <li class="places__card-item">
                         <img class="places__photo" src="./images/01.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
@@ -66,27 +67,48 @@
                         <img class="places__photo" src="./images/06.jpg" alt="Карточка элемента">
                         <div class="places__text-container">
                             <h2 class="places__text">Лес с видом сверху</h2>
-                            <button class="places__like-btn" type="button" aria-label="Кнопка лайк"></button>
+                            <button class="places_ _like-btn" type="button" aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
-                    </ul>
+                    </ul> -->
             </section>
         </main>
         <footer class="footer page__container">
             <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_profile-edit">
             <div class="popup__container">
                 <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="form-for-edit">
-                <input type="text" placeholder="Введите имя" class="popup__input popup__input_type_name" name="fullname">
-                <input type="text" placeholder="Введите описание" class="popup__input popup__input_type_job" name="fieldwork">
+            <form class="popup__form" name="form-edit-profile">
+                <input type="text" placeholder="Введите имя" class="popup__input popup__input_type_name" name="username-input">
+                <input type="text" placeholder="Введите описание" class="popup__input popup__input_type_job" name="about-input">
                 <button class="popup__submit-btn" type="submit">Сохранить</button>
             </form>
             </div>
         </div>
+        <div class="popup popup_places-add">
+            <div class="popup__container">
+                <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
+                <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="form-add-places">
+                <input type="text" placeholder="Название" class="popup__input popup__input_type_title" name="namePlaces-input">
+                <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="linkPlaces-input">
+                <button class="popup__submit-btn" type="submit">Создать</button>
+            </form>
+            </div>
+        </div>
     <script src="./script/index.js"></script>
+
+        <template class="places__template">
+                <li class="places__card-item">
+                    <img class="places__photo" src="" alt="">
+                    <div class="places__text-container">
+                        <h2 class="places__text"></h2>
+                        <button class="places__like-btn" type="button" aria-label="Кнопка лайк"></button>
+                    </div>
+                </li>
+        </template>
 </body>
 
 </html>
