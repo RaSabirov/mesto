@@ -36,36 +36,54 @@ function renderCards() {
 }
 
 function renderItem(card) {
-  // 1. Создать разметку
-  const cloneTemplate = placesTemplate.content.cloneNode;
-  // 2. Заменить текст в разметке
+  // Создать разметку
+  const cloneTemplate = placesTemplate.content.cloneNode(true);
+  // Заменить содержимое в разметке
   cloneTemplate.querySelector('.places__text').innerText = card.name;
-  // 3. Вставить разметку в DOM
-  placesCardsList.appendChild(cloneTemplate);
+  cloneTemplate.querySelector('.places__photo').src = card.link;
+  cloneTemplate.querySelector('.places__photo').alt = card.name;
+  // Вставить разметку в DOM
+  placesCardsList.prepend(cloneTemplate);
 }
+// вызываем функцию отображение массива с карточками
 renderCards();
 
+// Функция добавления новых карточек пользователем
+function formAddHandler(e) {
+  e.preventDefault();
+  // Взять значения из инпута
+  const myValueCardInputs = {
+  name: titleCardInput.value,
+  link: linkCardInput.value
+  };
+  // отрисовать строки с содержанием
+  renderItem(myValueCardInputs);
+  closePopupTypeAdd();
+}
+document.addEventListener('submit', formAddHandler); // Передаем событие "Сохранить значение"
 
-// 1. Объявить переменные
 const popup = document.querySelector('.popup');
 const formElement = popup.querySelector('.popup__form'); // Поиск элемента формы
 // Форма редактирования профиля
 const popupEdit = document.querySelector('.popup_profile-edit'); // Форма Edit редактирования профиля
-const nameInput = formElement.querySelector('.popup__input_type_name'); // Поля input у формы edit
-const jobInput = formElement.querySelector('.popup__input_type_job'); // Поля input у формы edit
 const popupOpenButtonEdit = document.querySelector('.profile__edit-btn'); // кнопка открытия формы для редактирования профиля
 const popupCloseButtonEdit = popup.querySelector('.popup__close-btn'); // кнопка открытия формы для close
-const profileName = document.querySelector('.profile__name'); // Текстовое поля из profile, куда будут записаны значения из value
-const profileJob = document.querySelector('.profile__job'); // Текстовое поля из profile, куда будут записаны значения из value
-// Форма добавления картинок
-const popupOpenButtonAdd = document.querySelector('.profile__add-btn'); // popup кнопка открытия формы для добавления карточек
-const popupCloseButtonAdd = document.querySelector('.popup__close-btn'); // popup кнопка закрытия формы для добавления карточек
+// Input поля у формы Edit
+const nameInput = formElement.querySelector('.popup__input_type_name');
+const jobInput = formElement.querySelector('.popup__input_type_job');
+// Текстовые поля из profile, куда будут записаны значения из value
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+// Форма добавления карточек
 const popupPlaces = document.querySelector('.popup_places-add'); // Форма Add у карточек
-const titleCardInput = formElement.querySelector('.popup__input_type_title'); // Поле input title у формы add
-const linkCardInput = formElement.querySelector('.popup__input_type_link'); // Поле input с ссылкой у формы add
+const popupOpenButtonAdd = document.querySelector('.profile__add-btn'); // popup кнопка открытия формы для добавления карточек
+const popupCloseButtonAdd = popupPlaces.querySelector('.popup__close-btn'); // popup кнопка закрытия формы для добавления карточек
+// Input поля у формы Add
+const titleCardInput = document.querySelector('.popup__input_type_title'); // Поле input title у формы add
+const linkCardInput = document.querySelector('.popup__input_type_link'); // Поле input с ссылкой у формы add
 
 
-// 1.1 Popup редактирование профиля || Открытие и закрытие формы
+// 2. Popup редактирование профиля || Открытие и закрытие формы
 // Функция отображения popup при клике на кнопку редактирования
 const openPopup = function () {
   nameInput.value = profileName.textContent; // Передаем значения после повторного открытия формы
@@ -78,7 +96,7 @@ const closePopup = function () {
   popupEdit.classList.remove('popup_is-opened');
 };
 
-// 1.2 Popup || Функция для сохранения значений при редактировании формы
+// Popup || Функция для сохранения значений при редактировании формы
 function formSubmitHandler(e) { 
   e.preventDefault();
   // Записываем новые значения value в profile поля с помощью textContent
@@ -93,7 +111,7 @@ popupCloseButtonEdit.addEventListener('click', closePopup); // Передаем 
 formElement.addEventListener('submit', formSubmitHandler); // Передаем событие "Сохранить значение"
 
 
-// Функция карточек
+// 3. Функция карточек
 
 // Открыть popup для добавления картинок
 const openPopupTypeAdd = function () {
@@ -110,15 +128,11 @@ popupOpenButtonAdd.addEventListener('click', openPopupTypeAdd); // Переда�
 popupCloseButtonAdd.addEventListener('click', closePopupTypeAdd); // Передаем событие "Закрыть Popup для кнопки Add"
 
 
-// // 2. Like Button || Добавить лайк и убрать лайк
-// const likeButtons = document.querySelectorAll('.places__like-btn'); // Выбираем все кнопки like на странице
-
-// // 2.1 Like Button || Добавить лайк и убрать лайк
-// const likeClickHandler = () => {
-//   likeButton.classList.toggle('places__like-btn_active');
-// };
-
-// // 2.2 Like Button || Передаем событие при клике на кнопку. Использован метод forEach, для того, чтобы пробежаться по всем кнопкам
-// likeButtons.forEach(likeButton => {
-//   likeButton.addEventListener('click', likeClickHandler)
-// });
+// 4. Like Button || Добавить лайк и убрать лайк
+const likeButtons = document.querySelectorAll('.places__like-btn'); // Выбираем все кнопки like на странице
+// Функция, добавить лайк или убрать. Использован метод forEach для перебора всех кнопок.
+likeButtons.forEach(likes => {
+  likes.addEventListener('click', (e) => {
+    likes.classList.toggle('places__like-btn_active');
+  }) 
+});
