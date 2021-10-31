@@ -34,6 +34,8 @@ function renderCards() {
     renderItem(card);
   })
 }
+// вызываем функцию отображение массива с карточками
+renderCards();
 
 function renderItem(card) {
   // Создать разметку
@@ -42,11 +44,29 @@ function renderItem(card) {
   cloneTemplate.querySelector('.places__text').innerText = card.name;
   cloneTemplate.querySelector('.places__photo').src = card.link;
   cloneTemplate.querySelector('.places__photo').alt = card.name;
+
+  // Вызываем функцию подключения событий на кнопки в карточке
+  setListeners(cloneTemplate);
+
   // Вставить разметку в DOM
   placesCardsList.prepend(cloneTemplate);
 }
-// вызываем функцию отображение массива с карточками
-renderCards();
+
+// Фукнция обработки событий для кнопок внутри карточки 
+function setListeners(card) {
+  card.querySelector('.places__del-btn').addEventListener('click', buttonDelete);
+  card.querySelector('.places__like-btn').addEventListener('click', likeActive);
+}
+
+// Функция удаления карточки
+function buttonDelete(e) {
+  e.target.closest('.places__card-item').remove();
+}
+
+// Функция лайка карточки
+function likeActive(e) {
+  e.target.classList.toggle('places__like-btn_active');
+}
 
 // Функция добавления новых карточек пользователем
 function formAddHandler(e) {
@@ -58,6 +78,7 @@ function formAddHandler(e) {
   };
   // отрисовать строки с содержанием
   renderItem(myValueCardInputs);
+
   closePopupTypeAdd();
 }
 document.addEventListener('submit', formAddHandler); // Передаем событие "Сохранить значение"
@@ -126,13 +147,3 @@ const closePopupTypeAdd = function () {
 // Регистрируем обработчики событий для формы add
 popupOpenButtonAdd.addEventListener('click', openPopupTypeAdd); // Передаем событие "Открыть Popup для кнопки Add"
 popupCloseButtonAdd.addEventListener('click', closePopupTypeAdd); // Передаем событие "Закрыть Popup для кнопки Add"
-
-
-// 4. Like Button || Добавить лайк и убрать лайк
-const likeButtons = document.querySelectorAll('.places__like-btn'); // Выбираем все кнопки like на странице
-// Функция, добавить лайк или убрать. Использован метод forEach для перебора всех кнопок.
-likeButtons.forEach(likes => {
-  likes.addEventListener('click', (e) => {
-    likes.classList.toggle('places__like-btn_active');
-  }) 
-});
