@@ -9,62 +9,76 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Проект Место</title>
 </head>
+
 <body class="page">
-        <header class="header page__container">
-            <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
-        </header>
-        <main class="content">
-            <section class="profile page__container">
-                <div class="profile__container">
-                    <img class="profile__image" src="./images/avatar.png" alt="Аватарка профиля">
-                    <div class="profile__info">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-btn link" type="button" aria-label="Кнопка изменить"></button>
-                        <p class="profile__job">Исследователь океана</p>
-                    </div>
+    <header class="header page__container">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+    </header>
+    <main class="content">
+        <section class="profile page__container">
+            <div class="profile__container">
+                <img class="profile__image" src="./images/avatar.png" alt="Аватарка профиля">
+                <div class="profile__info">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-btn link" type="button" aria-label="Кнопка изменить"></button>
+                    <p class="profile__job">Исследователь океана</p>
                 </div>
-                <button class="profile__add-btn link" type="button" aria-label="Кнопка добавить"></button>
-            </section>
-            <section class="places page__container">
-                <ul class="places__card"></ul>
-            </section>
-        </main>
-        <footer class="footer page__container">
-            <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-        </footer>
-        <div class="popup popup_profile-edit">
-            <div class="popup__container">
-                <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
+            </div>
+            <button class="profile__add-btn link" type="button" aria-label="Кнопка добавить"></button>
+        </section>
+        <section class="places page__container">
+            <ul class="places__card"></ul>
+        </section>
+    </main>
+    <footer class="footer page__container">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <div class="popup popup_type_profile-edit">
+        <div class="popup__container">
+            <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="form-edit-profile">
-                <input type="text" placeholder="Введите имя" class="popup__input popup__input_type_name" name="username-input">
-                <input type="text" placeholder="Введите описание" class="popup__input popup__input_type_job" name="about-input">
+                <input type="text" placeholder="Введите имя" class="popup__input popup__input_type_name"
+                    name="username-input">
+                <input type="text" placeholder="Введите описание" class="popup__input popup__input_type_job"
+                    name="about-input">
                 <button class="popup__submit-btn" type="submit">Сохранить</button>
             </form>
-            </div>
         </div>
-        <div class="popup popup_places-add">
-            <div class="popup__container">
-                <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
-                <h2 class="popup__title">Новое место</h2>
+    </div>
+    <div class="popup popup_type_places-add">
+        <div class="popup__container">
+            <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
+            <h2 class="popup__title">Новое место</h2>
             <form class="popup__form" name="form-add-places">
-                <input type="text" placeholder="Название" class="popup__input popup__input_type_title" name="namePlaces-input">
-                <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="linkPlaces-input">
+                <input type="text" placeholder="Название" class="popup__input popup__input_type_title"
+                    name="namePlaces-input">
+                <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link"
+                    name="linkPlaces-input">
                 <button class="popup__submit-btn" type="submit">Создать</button>
             </form>
-            </div>
         </div>
-        <template class="places__template">
-                <li class="places__card-item">
-                    <button class="places__del-btn" type="button" aria-label="Кнопка удалить"></button>
-                    <img class="places__photo" src="''" alt="">
-                    <div class="places__text-container">
-                        <h2 class="places__text"></h2>
-                        <button class="places__like-btn" type="button" aria-label="Кнопка лайк"></button>
-                    </div>
-                </li>
-        </template>
-        <script src="./script/index.js"></script>
+    </div>
+    <div class="popup popup_type_image">
+        <div class="popup__img-container">
+            <button class="popup__close-btn link" type="button" aria-label="Кнопка закрыть"></button>
+            <figure class="popup__figure">
+                <img class="popup__modal-img" src="#" alt="#">
+                <figcaption class="popup__caption"></figcaption>
+            </figure>
+        </div>
+    </div>
+    <template class="places__template">
+        <li class="places__card-item">
+            <button class="places__del-btn" type="button" aria-label="Кнопка удалить"></button>
+            <img class="places__photo" src="#" alt="#">
+            <div class="places__text-container">
+                <h2 class="places__text"></h2>
+                <button class="places__like-btn" type="button" aria-label="Кнопка лайк"></button>
+            </div>
+        </li>
+    </template>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
