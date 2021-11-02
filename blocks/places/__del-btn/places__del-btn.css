@@ -13,4 +13,9 @@
   right: 20px;
   top: 20px;
   cursor: pointer;
+  transition: ease 0.5s;
+}
+
+.places__del-btn:hover {
+  opacity: 0.6;
 }
