@@ -46,10 +46,8 @@ const popupCloseButtonAdd = popupPlaces.querySelector('.popup__close-btn'); // p
 // Input поля у формы карточек
 const titleCardInput = document.querySelector('.popup__input_type_title'); // Поле input title у формы add
 const linkCardInput = document.querySelector('.popup__input_type_link'); // Поле input с ссылкой у формы add
-
+// Карточки
 const placesCardsList = document.querySelector('.places__card'); // ul список все карточек
-// const placesTemplate = document.querySelector(".places__template"); // template шаблон карточек places
-// const placesCardItem = document.querySelector(".places__card-item");
 const placesTemplate = document.querySelector('.places__template').content;
 // Форма Image
 const popupImage = document.querySelector('.popup_type_image'); // Модификатор для popup формы image
@@ -64,10 +62,8 @@ function renderCards() {
 renderCards();
 
 function renderItem(card) {
-  // Создать разметку
-  // const cloneTemplate = placesTemplate.content.cloneNode(true);
-  // Заменить содержимое в разметке
   const cloneTemplate = placesTemplate.querySelector('.places__card-item').cloneNode(true);
+  // Заменить содержимое в разметке
   cloneTemplate.querySelector('.places__text').innerText = card.name; // Меняем имя на имя из нашего массива
   cloneTemplate.querySelector('.places__photo').src = card.link; // Меняем ссылку на ссылку из нашего массива
   cloneTemplate.querySelector('.places__photo').alt = card.name; // Меняем alt на имя из нашего массива
@@ -109,6 +105,7 @@ function formAddHandler(e) {
   };
   // отрисовать строки с содержанием
   renderItem(myValueCardInputs);
+  // закрыть popup
   closePopup(popupPlaces);
 }
 formCardPlaces.addEventListener('submit', formAddHandler); // Передаем событие "Создать" у формы добавления карточек
@@ -161,14 +158,13 @@ popupCloseImage.addEventListener('click', () => {
 
 // Функция открытия попапа Image
 function popupOpenimage(card) {
-  openPopup(popupImage);
   const placesText = card.querySelector('.places__text'); // Выбираем текстовое значение в карточке (template шаблона)
   const placesPhoto = card.querySelector('.places__photo'); // Выбираем изображение карточки
   const popupCaptionInImage = popupImage.querySelector('.popup__caption'); // Выбираем текстовое значение в popup форме
   const popupModalImage = popupImage.querySelector('.popup__modal-img'); // Выбираем image в popup форме
-
   // Присваиваем значения
   popupCaptionInImage.textContent = placesText.textContent;
   popupModalImage.src = placesPhoto.src;
   popupModalImage.alt = placesPhoto.alt;
+  openPopup(popupImage);
 }
