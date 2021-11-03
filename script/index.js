@@ -26,7 +26,7 @@ const initialCards = [
   },
 ];
 
-const popup = document.querySelector('.popup');
+
 // Форма редактирования профиля
 const popupEdit = document.querySelector('.popup_type_profile-edit'); // Форма Edit редактирования профиля
 const formEdit = popupEdit.querySelector('.popup__form'); // Поиск элемента формы
@@ -61,7 +61,9 @@ function renderCards() {
 // вызываем функцию отображение массива с карточками
 renderCards();
 
-function renderItem(card) {
+// Фукнция создания новой карточки
+function createCard(card) {
+  // клонируем элемент карточки с тегом li
   const cloneTemplate = placesTemplate.querySelector('.places__card-item').cloneNode(true);
   // Заменить содержимое в разметке
   cloneTemplate.querySelector('.places__text').innerText = card.name; // Меняем имя на имя из нашего массива
@@ -70,15 +72,20 @@ function renderItem(card) {
 
   // Вызываем функцию подключения событий на кнопки в карточке
   setListeners(cloneTemplate);
+  // Возвращаем готовую карточку
+  return cloneTemplate;
+}
+
+function renderItem(card) {
+  const cloneTemplate = createCard(card);
   // Вставить разметку в DOM
   placesCardsList.prepend(cloneTemplate);
 }
 
-// Фукнция обработки событий для кнопок внутри карточки
+// Фукнция обработки событий для элементов внутри карточки
 function setListeners(card) {
   card.querySelector('.places__del-btn').addEventListener('click', buttonDelete);
   card.querySelector('.places__like-btn').addEventListener('click', likeActive);
-
   const elementImg = card.querySelector('.places__photo');
   elementImg.addEventListener('click', () => {
     popupOpenimage(card);
@@ -98,7 +105,7 @@ function likeActive(e) {
 // Функция добавления новых карточек пользователем
 function formAddHandler(e) {
   e.preventDefault();
-  // Взять значения из инпута
+  // Взять значения из инпута для создания карточки
   const myValueCardInputs = {
     name: titleCardInput.value,
     link: linkCardInput.value,
@@ -107,6 +114,9 @@ function formAddHandler(e) {
   renderItem(myValueCardInputs);
   // закрыть popup
   closePopup(popupPlaces);
+  // очистить форму с содержанием, при следующем открытии попапа
+  titleCardInput.value = '';
+  linkCardInput.value = '';
 }
 formCardPlaces.addEventListener('submit', formAddHandler); // Передаем событие "Создать" у формы добавления карточек
 
