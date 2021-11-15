@@ -26,7 +26,6 @@ const initialCards = [
   },
 ];
 
-
 // Форма редактирования профиля
 const popupEdit = document.querySelector('.popup_type_profile-edit'); // Форма Edit редактирования профиля
 const formEdit = popupEdit.querySelector('.popup__form'); // Поиск элемента формы
@@ -90,17 +89,17 @@ function setListeners(card) {
   elementImg.addEventListener('click', () => {
     popupOpenimage(card);
   });
-};
+}
 
 // Функция удаления карточки
 function buttonDelete(e) {
   e.target.closest('.places__card-item').remove();
-};
+}
 
 // Функция лайка карточки
 function likeActive(e) {
   e.target.classList.toggle('places__like-btn_active');
-};
+}
 
 // Функция добавления новых карточек пользователем
 function formAddHandler(e) {
@@ -127,17 +126,27 @@ function formSubmitHandler(e) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupEdit);
-};
+}
 formEdit.addEventListener('submit', formSubmitHandler); // Передаем событие "Сохранить значение" у формы редактирования профиля
 
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
-};
+}
 // Функция закрытия popup
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
 }
+
+// Функция при клике на закрытие попапа вне окна формы
+// function closePopupByClickOverlay(evt) {
+//   if (evt.target !== evt.currentTarget) {
+//     return;
+//   }
+//   closePopup(popupEdit);
+//   closePopup(popupPlaces);
+// }
+// popup.addEventListener('click', closePopupByClickOverlay)
 
 // Обработчик при клике на попап Edit "Редактировать профиль", действие ОТКРЫТЬ
 popupOpenButtonEdit.addEventListener('click', () => {
@@ -177,4 +186,81 @@ function popupOpenimage(card) {
   popupModalImage.src = placesPhoto.src;
   popupModalImage.alt = placesPhoto.alt;
   openPopup(popupImage);
+}
+
+const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error'
+};
+
+// Функция показа ошибки
+function showInputError(formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error');
+}
+
+// Фукнция скрытия ошибки
+function hideInputError(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input_type_error');
+  errorElement.classList.remove('popup__input-error');
+  errorElement.textContent = '';
+}
+
+// Функция для скрытия и показа ошибок
+function checkInputValidity(formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+}
+
+// Добавляем слушатели
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__submit-btn');
+  toggleButtonState(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+      // чтобы проверить состояние кнопки в самом начале
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+}
+
+// Запускаем валидацию
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+}
+// Вызов функции
+enableValidation();
+
+// Функция обхода массива полей
+function hasInvalidInput(inputList) {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+// Функция блокировки кнопки отправить
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__submit-btn_disabled');
+  } else {
+    buttonElement.classList.remove('popup__submit-btn_disabled');
+  }
 }
