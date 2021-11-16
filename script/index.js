@@ -132,21 +132,31 @@ formEdit.addEventListener('submit', formSubmitHandler); // Передаем со
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_is-opened');
+  document.addEventListener('keydown', closePopupHandlerEsc);
+  popup.addEventListener('click', closePopupByClickOverlay)
 }
 // Функция закрытия popup
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', closePopupHandlerEsc);
+  popup.removeEventListener('click', closePopupByClickOverlay)
 }
 
 // Функция при клике на закрытие попапа вне окна формы
-// function closePopupByClickOverlay(evt) {
-//   if (evt.target !== evt.currentTarget) {
-//     return;
-//   }
-//   closePopup(popupEdit);
-//   closePopup(popupPlaces);
-// }
-// popup.addEventListener('click', closePopupByClickOverlay)
+function closePopupByClickOverlay(evt) {
+  if (evt.target !== evt.currentTarget) {
+    return;
+  }
+  closePopup(evt.currentTarget);
+};
+
+// Функция закрытия popup при нажатии на кнопку ESC
+function closePopupHandlerEsc(e) {
+  if (e.key === 'Escape') {
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    closePopup(popupIsOpened);
+  }
+}
 
 // Обработчик при клике на попап Edit "Редактировать профиль", действие ОТКРЫТЬ
 popupOpenButtonEdit.addEventListener('click', () => {
@@ -186,81 +196,4 @@ function popupOpenimage(card) {
   popupModalImage.src = placesPhoto.src;
   popupModalImage.alt = placesPhoto.alt;
   openPopup(popupImage);
-}
-
-const configValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error'
-};
-
-// Функция показа ошибки
-function showInputError(formElement, inputElement, errorMessage) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error');
-}
-
-// Фукнция скрытия ошибки
-function hideInputError(formElement, inputElement) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error');
-  errorElement.textContent = '';
-}
-
-// Функция для скрытия и показа ошибок
-function checkInputValidity(formElement, inputElement) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-}
-
-// Добавляем слушатели
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit-btn');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      // чтобы проверить состояние кнопки в самом начале
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-}
-
-// Запускаем валидацию
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-}
-// Вызов функции
-enableValidation();
-
-// Функция обхода массива полей
-function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
-
-// Функция блокировки кнопки отправить
-function toggleButtonState(inputList, buttonElement) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submit-btn_disabled');
-  } else {
-    buttonElement.classList.remove('popup__submit-btn_disabled');
-  }
 }
