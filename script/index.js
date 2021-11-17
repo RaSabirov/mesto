@@ -52,6 +52,7 @@ const placesTemplate = document.querySelector('.places__template').content;
 const popupImage = document.querySelector('.popup_type_image'); // Модификатор для popup формы image
 const popupCloseImage = popupImage.querySelector('.popup__close-btn'); // popup кнопка закрытия формы Image
 
+
 function renderCards() {
   initialCards.forEach((card) => {
     renderItem(card);
@@ -101,6 +102,8 @@ function likeActive(e) {
   e.target.classList.toggle('places__like-btn_active');
 }
 
+// Submit Button in popup
+const submitBtnPopupPlaces = popupPlaces.querySelector('.popup__submit-btn');
 // Функция добавления новых карточек пользователем
 function formAddHandler(e) {
   e.preventDefault();
@@ -116,6 +119,9 @@ function formAddHandler(e) {
   // очистить форму с содержанием, при следующем открытии попапа
   titleCardInput.value = '';
   linkCardInput.value = '';
+    // Деактивация кнопки "Сохранить" при повторно открытии popup (при пустых значений)
+    submitBtnPopupPlaces.disabled = true;
+    submitBtnPopupPlaces.classList.add('popup__submit-btn_disabled');
 }
 formCardPlaces.addEventListener('submit', formAddHandler); // Передаем событие "Создать" у формы добавления карточек
 
@@ -197,3 +203,5 @@ function popupOpenimage(card) {
   popupModalImage.alt = placesPhoto.alt;
   openPopup(popupImage);
 }
+
+
