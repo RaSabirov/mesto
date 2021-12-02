@@ -6,9 +6,10 @@ export class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
   }
-
+  // Метод для нахождения темплейта и подготовки его к клонированию
   _getTemplate() {
-    const cardElement = document.querySelector('.places__template').content.cloneNode(true);
+    this._templateSelector = document.querySelector('.places__template').content.cloneNode(true);
+    const cardElement = this._templateSelector;
 
     return cardElement;
   }
