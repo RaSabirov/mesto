@@ -6,8 +6,10 @@ export class FormValidator {
     this._inactiveButtonClass = configValidation.inactiveButtonClass;
     this._inputErrorClass = configValidation.inputErrorClass;
     this._errorClass = configValidation.errorClass;
-
     this._formElement = formElement;
+
+    this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
+    this._submitButton = formElement.querySelector(this._submitButtonSelector);
   }
   // Метод запуска валидации
   enableValidation() {
@@ -40,14 +42,13 @@ export class FormValidator {
   }
   // Слушатель валидации элементов формы
   _setValidationListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState(this._inputList, this._submitButton);
+
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(formElement, inputElement);
         // чтобы проверить состояние кнопки в самом начале
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._submitButton);
       });
     });
   }
@@ -69,11 +70,9 @@ export class FormValidator {
   }
   // Метод очистки ошибок инпутов при повторном открытии формы
   resetInputErrors() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(this._formElement, inputElement);
     });
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(this._inputList, this._submitButton);
   }
 }
