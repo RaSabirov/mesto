@@ -25,8 +25,6 @@ const linkCardInput = document.querySelector('.popup__input_type_link');
 // Карточки
 const placesCardsList = document.querySelector('.places__card');
 const popupCloseImage = popupImageForm.querySelector('.popup__close-btn');
-// Кнопка submit у попапа places
-const submitBtnPopupPlaces = popupPlaces.querySelector('.popup__submit-btn');
 
 // Создание экземпляров классов для форм
 const validatorEdit = new FormValidator(configValidation, formEdit);
@@ -35,11 +33,18 @@ const validatorCard = new FormValidator(configValidation, formCardPlaces);
 validatorEdit.enableValidation();
 validatorCard.enableValidation();
 
-function renderItem(data) {
+// Создаем новую карточку
+function createCard(data) {
   // Создаем экземпляр класса Card
-  const card = new Card(data);
-  // Подготавливаем карточку к публикаии и возвращаем ее наружу
-  const cardElement = card.generateCard();
+  const card = new Card(data).generateCard();
+  // Возаращаем готовую карточку
+  return card;
+}
+
+// Подготовка к публикации карточки
+function renderItem(data) {
+  // Подготавливаем карточку к публикации и возвращаем ее наружу
+  const cardElement = createCard(data, '.places__template');
   // Публикуем картоку в DOM
   placesCardsList.prepend(cardElement);
 }
@@ -53,7 +58,7 @@ function renderElements() {
 renderElements();
 
 // Функция добавления новых карточек пользователем
-function formAddHandler(evt) {
+function handleAddForm(evt) {
   evt.preventDefault();
   // Взять значения из инпута для создания карточки
   const myValueCardInputs = {
@@ -67,21 +72,18 @@ function formAddHandler(evt) {
   // очистить форму с содержанием, при следующем открытии попапа
   titleCardInput.value = '';
   linkCardInput.value = '';
-  // Деактивация кнопки "Сохранить" при повторно открытии popup (при пустых значений)
-  submitBtnPopupPlaces.disabled = true;
-  submitBtnPopupPlaces.classList.add('popup__submit-btn_disabled');
 }
-formCardPlaces.addEventListener('submit', formAddHandler);
+formCardPlaces.addEventListener('submit', handleAddForm);
 
 // Функция для сохранения значений при редактировании формы профиля Edit
-function formSubmitHandler(evt) {
+function handleSubmitForm(evt) {
   evt.preventDefault();
   // Записываем новые значения value в profile поля с помощью textContent
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupEdit);
 }
-formEdit.addEventListener('submit', formSubmitHandler);
+formEdit.addEventListener('submit', handleSubmitForm);
 
 //      Обработчики на клик для работы с попапами
 
@@ -104,7 +106,6 @@ popupOpenButtonAdd.addEventListener('click', () => {
   openPopup(popupPlaces);
   // Вызываем методы для очистки ошибок и инпутов при повторном открытии формы
   validatorCard.resetInputErrors();
-  validatorCard.resetInput();
 });
 
 // Обработчик при клике на попап add "Добавить картинки", действие ЗАКРЫТЬ

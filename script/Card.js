@@ -1,16 +1,20 @@
 import { openPopup, popupImageForm, popupCaptionImage, popupImage } from './utils.js';
 
 export class Card {
-  static _template = document.querySelector('.places__template').content;
-
-  constructor(data) {
+  constructor(data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._templateSelector = templateSelector;
   }
 
+  _getTemplate() {
+    const cardElement = document.querySelector('.places__template').content.cloneNode(true);
+
+    return cardElement;
+  }
   // Метод генерирования новой карточки
   generateCard() {
-    this._element = Card._template.cloneNode(true).children[0];
+    this._element = this._getTemplate();
     // Добавляем данные в разметку
     this._element.querySelector('.places__text').textContent = this._name;
     this._element.querySelector('.places__photo').alt = this._name;

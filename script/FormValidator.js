@@ -11,13 +11,10 @@ export class FormValidator {
   }
   // Метод запуска валидации
   enableValidation() {
-    const popupForms = Array.from(document.querySelectorAll(this._formSelector));
-    popupForms.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      this._setValidationListeners(this._formElement);
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
+    this._setValidationListeners(this._formElement);
   }
   // Метод показа ошибки
   _showInputError(formElement, inputElement, errorMessage) {
@@ -78,12 +75,5 @@ export class FormValidator {
       this._hideInputError(this._formElement, inputElement);
     });
     this._toggleButtonState(inputList, buttonElement);
-  }
-  // Метод очистки полей инпутов при повторном открытии формы
-  resetInput() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    inputList.forEach((inputElement) => {
-      inputElement.value = '';
-    });
   }
 }
