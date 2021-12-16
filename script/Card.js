@@ -1,10 +1,11 @@
-import { openPopup, popupImageForm, popupCaptionImage, popupImage } from './utils.js';
+// import { openPopup, popupImageForm, popupCaptionImage, popupImage } from './index.js';
 
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
   // Метод для нахождения темплейта и подготовки его к клонированию
   _getTemplate() {
@@ -38,19 +39,10 @@ export class Card {
     evt.target.classList.toggle('places__like-btn_active');
   }
 
-  // Метод открытия превью картинки
-  _handlePreviewImage(evt) {
-    popupImage.src = evt.target.closest('.places__photo').src;
-    popupImage.alt = evt.target.closest('.places__photo').alt;
-    popupCaptionImage.textContent = evt.target.closest('.places__photo').alt;
-
-    openPopup(popupImageForm); // вызываем открытие попапа с превью картинки
-  }
-
   // Слушатели событий на карточке
-  _setCardListeners(card) {
-    card.querySelector('.places__del-btn').addEventListener('click', this._handleDeleteCard);
-    card.querySelector('.places__like-btn').addEventListener('click', this._handleLikeCard);
-    card.querySelector('.places__photo').addEventListener('click', this._handlePreviewImage);
+  _setCardListeners() {
+    this._element.querySelector('.places__del-btn').addEventListener('click', this._handleDeleteCard);
+    this._element.querySelector('.places__like-btn').addEventListener('click', this._handleLikeCard);
+    this._element.querySelector('.places__photo').addEventListener('click', this._handleCardClick);
   }
 }
