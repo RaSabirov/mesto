@@ -1,24 +1,22 @@
-import './pages/index.css';
-import { Card } from './script/Card.js';
-import { initialCards } from './script/utils/initialCards.js';
-import { FormValidator } from './script/FormValidator.js';
-import { configValidation } from './script/utils/config.js';
-import { Section } from './script/Section.js';
-import { PopupWithImage } from './script/PopupWithImage.js';
-import { PopupWithForm } from './script/PopupWithForm.js';
-import { UserInfo } from './script/UserInfo.js';
+import './index.css';
+import { initialCards } from '../script/utils/initialCards.js';
+import { configValidation } from '../script/utils/config.js';
 
-// Формы попапов
-const formEdit = document.forms['form-edit-profile'];
-const formAddCard = document.forms['form-add-places'];
+import { Card } from '../script/components/Card.js';
+import { FormValidator } from '../script/components/FormValidator.js';
+import { Section } from '../script/components/Section.js';
+import { PopupWithImage } from '../script/components/PopupWithImage.js';
+import { PopupWithForm } from '../script/components/PopupWithForm.js';
+import { UserInfo } from '../script/components/UserInfo.js';
 
-// Input поля у формы Edit
-const nameInput = formEdit.querySelector('.popup__input_type_name');
-const jobInput = formEdit.querySelector('.popup__input_type_job');
-
-// Кнопки для открытия форм
-const popupOpenButtonEdit = document.querySelector('.profile__edit-btn');
-const popupOpenButtonAdd = document.querySelector('.profile__add-btn');
+import {
+  formEdit,
+  formAddCard,
+  nameInput,
+  jobInput,
+  popupOpenButtonEdit,
+  popupOpenButtonAdd,
+} from '../script/utils/constants.js';
 
 // Создание экземпляров классов для валидации
 const validatorEdit = new FormValidator(configValidation, formEdit);
