@@ -13,8 +13,13 @@
   right: 20px;
   top: 20px;
   cursor: pointer;
+  visibility: visible;
 }
 
 .places__del-btn:hover {
   opacity: 0.6;
+}
+
+.places__del-btn_hide {
+  visibility: hidden;
 }

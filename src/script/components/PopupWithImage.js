@@ -6,7 +6,7 @@ export class PopupWithImage extends Popup {
     this._popupImage = this._popup.querySelector('.popup__modal-img');
     this._popupCaption = this._popup.querySelector('.popup__caption');
   }
-  open({ name, link }) {
+  open(name, link) {
     super.open();
 
     this._popupCaption.textContent = name;
