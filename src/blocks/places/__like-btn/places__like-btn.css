@@ -3,13 +3,14 @@
   width: 22px;
   min-height: 19px;
   background-color: inherit;
-  background-image: url("../../../images/like-btn.svg");
+  background-image: url('../../../images/like-btn.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
   padding: 0;
   transition: ease 0.5s;
+  margin-bottom: 3px;
 }
 
 .places__like-btn:hover {
