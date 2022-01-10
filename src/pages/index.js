@@ -171,7 +171,7 @@ const avatarFormPopup = new PopupWithForm('.popup_type_avatar', (data) => {
     .then((res) => {
       userInfo.setUserInfo(res);
     })
-    .catch((err) => alert('Возникла ошибка:', err))
+    .catch((err) => alert('Возникла ошибка при смене аватарки:', err))
     .finally(() => avatarFormPopup.showLoading(false));
 });
 avatarFormPopup.setEventListeners();
@@ -186,7 +186,7 @@ const addFormPopup = new PopupWithForm('.popup_type_places-add', (item) => {
       // Добавляем DOM элемент в контейнер
       cardList.addItem(cardElement);
     })
-    .catch((err) => alert('Возникла ошибка:', err))
+    .catch((err) => alert('Возникла ошибка при добавлении карточки:', err))
     .finally(() => addFormPopup.showLoading(false));
 });
 addFormPopup.setEventListeners();
