@@ -1,5 +1,5 @@
 export class Card {
-  constructor({ data, templateSelector, userId, handlers }) {
+  constructor({ data, userId, templateSelector, handlers }) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -16,8 +16,8 @@ export class Card {
 
   // Метод для нахождения темплейта и подготовки его к клонированию
   _getTemplate() {
-    this._templateSelector = document.querySelector('.places__template').content.cloneNode(true);
-    const cardElement = this._templateSelector.querySelector('.places__card-item');
+    this._template = document.querySelector(this._templateSelector).content.cloneNode(true);
+    const cardElement = this._template.querySelector('.places__card-item');
 
     return cardElement;
   }
@@ -25,14 +25,20 @@ export class Card {
   // Метод генерирования новой карточки
   generateCard() {
     this._element = this._getTemplate();
-    // Добавляем данные в разметку
-    this._element.querySelector('.places__text').textContent = this._name;
-    this._element.querySelector('.places__photo').alt = this._name;
-    this._element.querySelector('.places__photo').src = this._link;
+
+    // Находим картинку и текст
+    this._cardImage = this._element.querySelector('.places__photo');
+    this._cardText = this._element.querySelector('.places__text');
+
+    // Находим кнопки на карточке
     this._buttonDelete = this._element.querySelector('.places__del-btn');
     this._buttonLike = this._element.querySelector('.places__like-btn');
     this._likeCounter = this._element.querySelector('.places__like-counter');
-    this._cardImage = this._element.querySelector('.places__photo');
+
+    // Добавляем данные в разметку
+    this._cardText.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
 
     this._deleteCardUser();
 

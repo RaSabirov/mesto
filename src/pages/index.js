@@ -28,8 +28,10 @@ import {
 // ============================================================================
 const validatorEdit = new FormValidator(configValidation, formEdit);
 validatorEdit.enableValidation();
+
 const validatorCard = new FormValidator(configValidation, formAddCard);
 validatorCard.enableValidation();
+
 const validatorAvatar = new FormValidator(configValidation, formAvatar);
 validatorAvatar.enableValidation();
 
@@ -39,11 +41,21 @@ const userInfo = new UserInfo({
   avatar: '.profile__image',
 });
 
-let cardList;
 let userId;
+// Создаем глобальный cardList чтобы была возможность обратиться к нему при наполнении карточками и при добавлении новой.
+const cardList = new Section(
+  {
+    renderer: (item) => {
+      const cardElement = createCard(item, userId);
+      // Добавляем элемент в контейнер DOM
+      cardList.addItem(cardElement);
+    },
+  },
+  '.places__card'
+);
 
 // ============================================================================
-// ============== Начальное состояние страницы
+// ============== Начальное состояние страницы, работа с API
 // ============================================================================
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-33',
@@ -53,48 +65,33 @@ const api = new Api({
   },
 });
 
-Promise.all([api.getUserData(), api.getInitialCards()]).then((res) => {
-  // Записываем в переменную id пользователя, чтобы в дальнейшем определить принадлежность к карточкам.
-  userId = res[0]._id;
-  // Заполняем профиль данными которые получаем из API
-  api
-    .getUserData()
-    .then((data) => {
-      userInfo.setUserInfo({
-        name: data.name,
-        job: data.about,
-        avatar: data.avatar,
-      });
-    })
-    .catch((err) => alert('Возникла ошибка:', err));
+// Методом возвращаем Promise.all из класса Api
+api
+  .getAppInfo()
+  .then((dataApi) => {
+    const [cardsApi, userDataApi] = dataApi;
+    // Записываем в переменную  id пользователя, чтобы в дальнейшем определить принадлежность к карточкам.
+    userId = userDataApi._id;
 
-  // После получения id начинаем выгружать карточки на страницу из API
-  api
-    .getInitialCards()
-    .then((data) => {
-      // Наполнение карточками
-      cardList = new Section(
-        {
-          items: data,
-          renderer: (item) => {
-            const cardElement = createCard(item, userId);
-            // Добавляем элемент в контейнер DOM
-            cardList.addItem(cardElement);
-          },
-        },
-        '.places__card'
-      );
-      cardList.rendererItems();
-    })
-    .catch((err) => alert('Возникла ошибка:', err));
-});
+    // Выгружаем данные пользователя на страницу
+    userInfo.setUserInfo({
+      name: userDataApi.name,
+      job: userDataApi.about,
+      avatar: userDataApi.avatar,
+    });
+
+    // Выгружаем карточки на страницу
+    cardList.rendererItems(cardsApi);
+    return cardList;
+  })
+  .catch((err) => alert('Ошибка загрузки данных с сервера:', err));
 
 // Функция создания экземпляра карточки
 function createCard(data, userId) {
   const card = new Card({
     data: data,
-    templateSelector: '.places__template',
     userId,
+    templateSelector: '.places__template',
     handlers: {
       handleCardClick: () => {
         popupWithImage.open(data.name, data.link);
@@ -154,8 +151,9 @@ const formProfilePopup = new PopupWithForm('.popup_type_profile-edit', (formValu
     .editProfile(formValue.name, formValue.job)
     .then((res) => {
       userInfo.setUserInfo({ name: res.name, job: res.about, avatar: res.avatar });
+      formProfilePopup.close();
     })
-    .catch((err) => alert('Возникла ошибка:', err))
+    .catch((err) => alert('Возникла ошибка3:', err))
     .finally(() => formProfilePopup.showLoading(false));
 });
 formProfilePopup.setEventListeners();
@@ -170,6 +168,7 @@ const avatarFormPopup = new PopupWithForm('.popup_type_avatar', (data) => {
     .changeAvatar(data.link)
     .then((res) => {
       userInfo.setUserInfo(res);
+      avatarFormPopup.close();
     })
     .catch((err) => alert('Возникла ошибка при смене аватарки:', err))
     .finally(() => avatarFormPopup.showLoading(false));
@@ -182,9 +181,10 @@ const addFormPopup = new PopupWithForm('.popup_type_places-add', (item) => {
   api
     .addCard(item.name, item.link)
     .then((data) => {
-      const cardElement = createCard(data);
+      const cardElement = createCard(data, userId);
       // Добавляем DOM элемент в контейнер
       cardList.addItem(cardElement);
+      addFormPopup.close();
     })
     .catch((err) => alert('Возникла ошибка при добавлении карточки:', err))
     .finally(() => addFormPopup.showLoading(false));

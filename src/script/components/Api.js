@@ -79,4 +79,9 @@ export class Api {
       headers: this._headers,
     }).then(this._errorHandler);
   }
+
+  // Метод для одновременного получения всех данных для приложения
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserData()]);
+  }
 }

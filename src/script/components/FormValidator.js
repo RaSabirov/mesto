@@ -1,78 +1,79 @@
 export class FormValidator {
-  constructor(configValidation, formElement) {
-    this._formSelector = configValidation.formSelector;
-    this._inputSelector = configValidation.inputSelector;
-    this._submitButtonSelector = configValidation.submitButtonSelector;
-    this._inactiveButtonClass = configValidation.inactiveButtonClass;
-    this._inputErrorClass = configValidation.inputErrorClass;
-    this._errorClass = configValidation.errorClass;
+  constructor(config, formElement) {
+    this._config = config;
     this._formElement = formElement;
+    this._formSelector = config.formSelector;
+    this._inputSelector = config.inputSelector;
+
+    this._submitButtonSelector = config.submitButtonSelector;
+    this._inactiveButtonClass = config.inactiveButtonClass;
+
+    this._inputErrorClass = config.inputErrorClass;
+    this._errorClass = config.errorClass;
 
     this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-    this._submitButton = formElement.querySelector(this._submitButtonSelector);
+    this._submitButton = formElement.querySelector(config.submitButtonSelector);
   }
   // Метод запуска валидации
   enableValidation() {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this._setValidationListeners(this._formElement);
+    this._setValidationListeners();
   }
   // Метод показа ошибки
-  _showInputError(formElement, inputElement, errorMessage) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   }
   // Метод скрытия ошибки
-  _hideInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
+    errorElement.classList.remove(this._errorClass);
   }
   // Метод проверки для методов скрытия и показа ошибок
-  _checkInputValidity(formElement, inputElement) {
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(formElement, inputElement);
+      this._hideInputError(inputElement);
     }
   }
   // Слушатель валидации элементов формы
-  _setValidationListeners(formElement) {
-    this._toggleButtonState(this._inputList, this._submitButton);
-
+  _setValidationListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidity(formElement, inputElement);
+        this._checkInputValidity(inputElement);
         // чтобы проверить состояние кнопки в самом начале
-        this._toggleButtonState(this._inputList, this._submitButton);
+        this._toggleButtonState();
       });
     });
   }
   // Метод блокировки кнопки отправить
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.disabled = true;
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._submitButton.disabled = true;
+      this._submitButton.classList.add(this._config.inactiveButtonClass);
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.disabled = false;
+      this._submitButton.disabled = false;
+      this._submitButton.classList.remove(this._config.inactiveButtonClass);
     }
   }
   // Метод обхода массива полей
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
   // Метод очистки ошибок инпутов при повторном открытии формы
   resetInputErrors() {
     this._inputList.forEach((inputElement) => {
-      this._hideInputError(this._formElement, inputElement);
+      this._hideInputError(inputElement);
     });
-    this._toggleButtonState(this._inputList, this._submitButton);
+    this._toggleButtonState();
   }
 }
