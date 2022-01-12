@@ -44,7 +44,7 @@ export class Card {
 
     // Проверка и отображение лайков на карточке
     this._checkLikes();
-    this._likeCounter.textContent = this._likes.length;
+    this._likeCounter.textContent = this._likesNum;
 
     // Вызываем слушатели событий на карточке
     this._setEventListeners(this._element);

@@ -11,7 +11,7 @@ export class Section {
 
   //метод который отвечает за отрисовку всех элементов.
   rendererItems(items) {
-    items.forEach((item) => {
+    items.reverse().forEach((item) => {
       this._renderer(item);
     });
   }

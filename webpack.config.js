@@ -17,7 +17,7 @@ module.exports = {
     },
     open: true,
     compress: true,
-    port: 9006,
+    port: 9010,
   },
   module: {
     rules: [
